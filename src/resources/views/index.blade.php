@@ -9,9 +9,20 @@
 @section('content')
 {{-- フラッシュメッセージ --}}
 <div class="todo__alert">
+    @if(session('message'))
     <div class="todo__alert--success">
-        Todoを作成しました
+        {{ session('message') }}
     </div>
+    @endif
+    @if($errors->any())
+    <div class="todo__alert--error">
+        <ul>
+            @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 </div>
 
 {{-- Todo新規作成フォーム --}}
@@ -37,10 +48,13 @@
             <tr class="todo-table__row">
                 <td class="todo-table__item">
                     {{-- Todoを編集するフォーム --}}
-                    <form action="" class="update-form">
+                    <form action="/todos/update" method="post"  class="update-form">
+                        @method('PATCH')
+                        @csrf
                         {{-- 編集用の入力欄 --}}
                         <div class="update-form__item">
-                            <p class="update-form__box">{{ $todo['content'] }}</p>
+                        <input type="text" class="update-form__box" name="content" value="{{ $todo['content'] }}">{{-- todoの中身を表示して編集もできる --}}
+                        <input type="hidden" name="id" value="{{ $todo['id'] }}">
                         </div>
                         {{-- 更新ボタン --}}
                         <div class="update-form__btn">
@@ -50,9 +64,12 @@
                 </td>
                 <td class="todo-table__item">
                     {{-- Todoを削除するフォーム --}}
-                    <form action="" class="delete-form">
+                    <form action="/todos/delete" class="delete-form" method="post">
+                    @method('DELETE')
+                    @csrf
                         {{-- 削除ボタン --}}
                         <div class="delete-form__btn">
+                            <input type="hidden" name="id" value="{{ $todo['id'] }}">
                             <button class="delete-form__btn-submit" type="submit">削除</button>
                         </div>
                     </form>
