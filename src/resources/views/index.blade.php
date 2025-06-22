@@ -3,20 +3,23 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
-{{-- cssファイルの読み込み --}}
+{{-- index.cssの読み込み --}}
 @endsection
 
 @section('content')
 {{-- フラッシュメッセージ --}}
 <div class="todo__alert">
     @if(session('message'))
+    {{-- 成功時のメッセージ表示 --}}
     <div class="todo__alert--success">
         {{ session('message') }}
     </div>
     @endif
+
     @if($errors->any())
     <div class="todo__alert--error">
         <ul>
+            {{-- バリデーションエラーがある時にリスト表示 --}}
             @foreach($errors->all() as $error)
             <li>{{ $error }}</li>
             @endforeach
@@ -42,18 +45,19 @@
                 {{-- 見出し --}}
                 <th class="todo-table__header">Todo</th>
             </tr>
-
-            {{-- 一つ目のTodo --}}
+            {{-- todos配列をループして1件ずつ表示 --}}
             @foreach ($todos as $todo)
             <tr class="todo-table__row">
                 <td class="todo-table__item">
-                    {{-- Todoを編集するフォーム --}}
+                    {{-- 編集フォーム --}}
+                    {{-- 編集リクエスト用のフォーム --}}
                     <form action="/todos/update" method="post"  class="update-form">
                         @method('PATCH')
                         @csrf
-                        {{-- 編集用の入力欄 --}}
                         <div class="update-form__item">
-                        <input type="text" class="update-form__box" name="content" value="{{ $todo['content'] }}">{{-- todoの中身を表示して編集もできる --}}
+                        {{-- 現在のTodo内容表示（編集もできる） --}}
+                        <input type="text" class="update-form__box" name="content" value="{{ $todo['content'] }}">
+                        {{-- 編集対象のTodo ID（見えない） --}}
                         <input type="hidden" name="id" value="{{ $todo['id'] }}">
                         </div>
                         {{-- 更新ボタン --}}
@@ -63,13 +67,14 @@
                     </form>
                 </td>
                 <td class="todo-table__item">
-                    {{-- Todoを削除するフォーム --}}
+                    {{-- 削除フォーム --}}
                     <form action="/todos/delete" class="delete-form" method="post">
                     @method('DELETE')
                     @csrf
-                        {{-- 削除ボタン --}}
+                        {{-- 削除対象のTodo ID（見えない） --}}
                         <div class="delete-form__btn">
                             <input type="hidden" name="id" value="{{ $todo['id'] }}">
+                            {{-- 削除ボタン --}}
                             <button class="delete-form__btn-submit" type="submit">削除</button>
                         </div>
                     </form>

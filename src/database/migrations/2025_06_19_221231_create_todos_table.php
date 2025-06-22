@@ -7,21 +7,23 @@ use Illuminate\Support\Facades\Schema;
 class CreateTodosTable extends Migration
 {
     /**
-     * Run the migrations.
+     * マイグレーションの実行時に呼び出される処理
+     *「todos」テーブルを新しく作成する
      *
      * @return void
      */
     public function up()
     {
         Schema::create('todos', function (Blueprint $table) {
-            $table->id();
-            $table->string('content', 20);
-            $table->timestamps();
+            $table->id();//ID（自動で増える主キー）作成
+            $table->string('content', 20);//Todoの内容を最大20文字の文字列で作成
+            $table->timestamps();//created_at・updated_at の日時カラムを自動で作成
         });
     }
 
     /**
-     * Reverse the migrations.
+     * マイグレーションを取り消す
+     * 「todos」テーブルを削除する
      *
      * @return void
      */
