@@ -1,33 +1,28 @@
-.todo__alert--success {
+.category__alert--success {
     padding: 10px 30px;
     border-color: #badbcc;
     background-color: #d1e7dd;
     color: #0f5132;
 }
 
-.todo__alert--error {
+.category__alert--error {
     padding: 10px 30px;
     border-color: #f5c2c7;
     background-color: #f8d7da;
     color: #842029;
 }
 
-.todo__alert--error ul {
+.category__alert--error ul {
     margin: 0;
 }
 
-.todo__content {
+.category__content {
     margin: 0 auto;
     padding: 30px 15px;
     max-width: 1230px;
 }
 
-.section__title {
-    margin: 0 auto;
-    width: 70%;
-}
-
-.todo-form, .search-form {
+.category-form {
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
@@ -36,13 +31,12 @@
     text-align: center;
 }
 
-.todo-form__item, .search-form__item {
+.category-form__item {
     display: flex;
     width: 70%;
 }
 
-.todo-form__item--box,
-.search-form__item--box {
+.category-form__item--box {
     margin-right: 10px;
     padding: 10px;
     width: 70%;
@@ -51,17 +45,7 @@
     border-radius: 5px;
 }
 
-.todo-form__item--select,
-.search-form__item--select {
-    padding: 10px;
-    width: 30%;
-    height: 40px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    appearance: none;
-}
-
-.create__btn, .search__btn {
+.create__btn {
     padding: 10px;
     width: 20%;
     height: 40px;
@@ -72,32 +56,32 @@
     cursor: pointer;
 }
 
-.todo-table {
+.category-table {
     margin: 30px auto;
     width: 70%;
     text-align: left;
 }
 
-.todo-table__inner {
+.category-table__inner {
     width: 100%;
 }
 
-.todo-table__header {
+.category-table__header {
     padding: 12px;
     width: 20%;
     text-align: left;
     font-weight: bold;
 }
 
-.todo-table__row {
+.category-table__row {
     border-bottom: 1px solid #ddd;
 }
 
-.todo-table__header-span {
+.category-table__header-span {
     margin-right: 40%;
 }
 
-.todo-table__item:first-of-type {
+.category-table__item:first-of-type {
     padding: 12px;
     width: 90%;
 }
@@ -113,10 +97,6 @@
     line-height: 50%;
 }
 
-.update-form__item-p {
-    text-align: left;
-    font-size: 13px;
-}
 
 .update-form__box {
     width: 100%;
@@ -136,10 +116,10 @@
 
 .delete-form__btn-submit {
     padding: 5px;
-        width: 50px;
-        border: none;
-        border-radius: 5px;
-        background-color: #ff0000;
-        color: #fff;
-        cursor: pointer;
+    width: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff0000;
+    color: #fff;
+    cursor: pointer;
 }
