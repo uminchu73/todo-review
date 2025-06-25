@@ -16,6 +16,7 @@ class CreateTodosTable extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();//ID（自動で増える主キー）作成
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');// category削除時に自動削除される外部キー制約
             $table->string('content', 20);//Todoの内容を最大20文字の文字列で作成
             $table->timestamps();//created_at・updated_at の日時カラムを自動で作成
         });
